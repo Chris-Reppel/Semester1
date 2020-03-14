@@ -1,3 +1,6 @@
+"""
+URL: https://github.com/Mystyking/Semester1
+"""
 MINIMUM_LENGTH = 4
 
 
