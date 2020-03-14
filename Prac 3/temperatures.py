@@ -9,6 +9,7 @@ Q - Quit"""
 
 
 def main():
+    """Ask user for a temperature to convert"""
     print(MENU)
     choice = input(">>> ").upper()
     while choice != "Q":
