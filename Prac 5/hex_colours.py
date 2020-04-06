@@ -4,5 +4,8 @@ colours = {"Chartreuse1": "#7fff00", "AliceBlue": "#f0f8ff", "Aquamarine1": "#7f
 
 colour_name = input("Enter a colour name: ")
 while colour_name != "":
-    print("The Hex value for \"{}\" is {}".format(colour_name, colours.get(colour_name)))
+    if colour_name in colours:
+        print("The Hex value for \"{}\" is {}".format(colour_name, colours.get(colour_name)))
+    else:
+        print("Invalid colour")
     colour_name = input("Enter a colour name: ")
