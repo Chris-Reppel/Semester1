@@ -26,7 +26,7 @@ def main():
         elif user_choice == "C":
             list_songs(song_list)
             print('Enter the number of a song to mark as learned')
-            check_learnt_song(song_list)
+            check_learned_song(song_list)
         else:
             print("Invalid menu choice")
         print(MENU)
@@ -69,6 +69,34 @@ def list_songs(song_list):
         print("No more songs to learn!")
     else:
         print(song_total - unlearnt_songs, "songs learned,", unlearnt_songs, "songs still to learn")
+
+
+def add_new_song(song_list):
+    title = record_user_input("Title: ")
+    artist = record_user_input("Artist: ")
+    date = record_user_input("Date: ")
+    new_song = [title, artist, date, 'u']
+    song_list.append(new_song)
+
+
+def record_user_input(input_type):
+    return
+
+
+def verify_user_input(user_input, data_type):
+    return
+
+
+def check_unlearned_song(song_list):
+    return
+
+
+def check_learned_song(song_list):
+    return
+
+
+def save_songs(song_list):
+    return
 
 
 main()
