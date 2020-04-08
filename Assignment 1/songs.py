@@ -14,7 +14,26 @@ import csv
 
 
 def main():
-    
+    print("Songs to Learn 1.0 - by Chris Reppel")
+    song_list = load_songs()
+    print(MENU)
+    user_choice = input(">>> ").upper()
+    while user_choice != "Q":
+        if user_choice == "L":
+            list_songs(song_list)
+        elif user_choice == "A":
+            add_new_song(song_list)
+        elif user_choice == "C":
+            list_songs(songs_list)
+            print('Enter the number of a song to mark as learned')
+            check_leant_song(song_list)
+        else:
+            print("Invalid menu choice")
+        print(MENU)
+        user_choice = input(">>> ").upper()
+    save_songs(song_list)
+    print("Have a nice day :)")
+
 
 main()
 
