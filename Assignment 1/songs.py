@@ -35,5 +35,19 @@ def main():
     print("Have a nice day :)")
 
 
+def load_songs():
+    song_list = []
+    for song in open('songs.csv', 'r'):
+        song = song.rstrip('\n').split(",")
+        song_list.append(song)
+    for song in song_list:
+        song[2] = int(song[2])
+    print('{} songs loaded from songs.csv'.format(len(song_list)))
+    return  song_list
+
+
+def list_songs(song_list):
+
+
 main()
 
