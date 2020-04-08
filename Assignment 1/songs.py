@@ -24,7 +24,7 @@ def main():
         elif user_choice == "A":
             add_new_song(song_list)
         elif user_choice == "C":
-            list_songs(songs_list)
+            list_songs(song_list)
             print('Enter the number of a song to mark as learned')
             check_learnt_song(song_list)
         else:
@@ -43,10 +43,32 @@ def load_songs():
     for song in song_list:
         song[2] = int(song[2])
     print('{} songs loaded from songs.csv'.format(len(song_list)))
-    return  song_list
+    return song_list
 
 
 def list_songs(song_list):
+    unlearnt_songs = 0
+    longest_title = 0
+    longest_artist = 0
+    song_index = 1
+
+    for song in song_list:
+        if len(song[0]) > longest_title:
+            longest_title = len(song[0])
+        if song[3] == 'u':
+            unlearnt_songs += 1
+        if len(song[1]) > longest_artist:
+            longest_artist = len(song[1])
+    for song in song_list:
+        print(("*" if (song[3] is 'u') else " "), " {}.".format(song_index), song[0],
+              " " * (longest_title - len(song[0])), "-", song[1], " " * (longest_artist - len(song[1])),
+              "({})".format(song[2]))
+        song_index += 1
+    song_total = song_index - 1
+    if unlearnt_songs == 0:
+        print("No more songs to learn!")
+    else:
+        print(song_total - unlearnt_songs, "songs learned,", unlearnt_songs, "songs still to learn")
 
 
 main()
