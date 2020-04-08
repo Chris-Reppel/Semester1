@@ -26,7 +26,7 @@ def main():
         elif user_choice == "C":
             list_songs(songs_list)
             print('Enter the number of a song to mark as learned')
-            check_leant_song(song_list)
+            check_learnt_song(song_list)
         else:
             print("Invalid menu choice")
         print(MENU)
