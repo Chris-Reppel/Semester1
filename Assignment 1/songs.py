@@ -115,7 +115,14 @@ def verify_user_input(user_input, data_type):
 
 
 def check_unlearned_song(song_list):
-    return
+    unlearned = 0
+    for song in song_list:
+        if song[3] == 'u':
+            unlearned += 1
+            check_learned_song(song_list)
+            break
+        if unlearned == 0:
+            print("No songs left to learn")
 
 
 def check_learned_song(song_list):
