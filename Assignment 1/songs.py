@@ -126,7 +126,15 @@ def check_unlearned_song(song_list):
 
 
 def check_learned_song(song_list):
-    return
+    user_input = record_user_input('song_index')
+    if user_input > len(song_list):
+        print('Invalid song number')
+        check_learned_song(song_list)
+    elif song_list[user_input - 1][3] == 'l':
+        print('That song is already learned')
+    else:
+        print(song_list[user_input - 1][0], " by ", song_list[user_input - 1][1], " learned!")
+        song_list[user_input - 1][3] = 'l'
 
 
 def save_songs(song_list):
