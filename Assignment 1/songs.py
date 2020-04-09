@@ -80,10 +80,22 @@ def add_new_song(song_list):
 
 
 def record_user_input(input_type):
-    return
+    if input_type == "Date: " or input_type == 'song_index':
+        data_type = int
+    else:
+        data_type = str
+    if input_type == 'song_index':
+        input_type = '>>>'
+    user_input = input("{}".format(input_type))
+    while verify_user_input(user_input, data_type) == 0:
+        user_input = input("{}".format(input_type))
+    if data_type == int:
+        user_input = int(user_input)
+    return user_input
 
 
 def verify_user_input(user_input, data_type):
+    
     return
 
 
