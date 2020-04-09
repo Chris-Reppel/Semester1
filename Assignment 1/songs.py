@@ -138,7 +138,13 @@ def check_learned_song(song_list):
 
 
 def save_songs(song_list):
-    return
+    for song in song_list:
+        song[2] = str(song[2])
+    output_file = open('songs.csv', 'w')
+    for song in song_list:
+        print(','.join(song), file=output_file)
+    output_file.close()
+    print(len(song_list), " songs saved to songs.csv")
 
 
 main()
