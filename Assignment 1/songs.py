@@ -95,8 +95,23 @@ def record_user_input(input_type):
 
 
 def verify_user_input(user_input, data_type):
-    
-    return
+    if data_type == str:
+        if not user_input.strip():
+            print("Input can not be blank")
+            return False
+        else:
+            return True
+    else:
+        try:
+            user_input = int(user_input)
+            if user_input <= 0:
+                print("Number must be > than 0")
+                return False
+            else:
+                return True
+        except ValueError:
+            print("Invalid input; enter a valid number")
+            return False
 
 
 def check_unlearned_song(song_list):
