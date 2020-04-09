@@ -10,8 +10,6 @@ A - Add a new Song
 C - Complete a Song
 Q - Quit"""
 
-import csv
-
 
 def main():
     print("Songs to Learn 1.0 - by Chris Reppel")
@@ -24,9 +22,8 @@ def main():
         elif user_choice == "A":
             add_new_song(song_list)
         elif user_choice == "C":
-            list_songs(song_list)
             print('Enter the number of a song to mark as learned')
-            check_learned_song(song_list)
+            check_unlearned_song(song_list)
         else:
             print("Invalid menu choice")
         print(MENU)
@@ -47,16 +44,16 @@ def load_songs():
 
 
 def list_songs(song_list):
-    unlearnt_songs = 0
+    unlearned_songs = 0
     longest_title = 0
     longest_artist = 0
-    song_index = 1
+    song_index = 0
 
     for song in song_list:
         if len(song[0]) > longest_title:
             longest_title = len(song[0])
         if song[3] == 'u':
-            unlearnt_songs += 1
+            unlearned_songs += 1
         if len(song[1]) > longest_artist:
             longest_artist = len(song[1])
     for song in song_list:
@@ -64,23 +61,23 @@ def list_songs(song_list):
               " " * (longest_title - len(song[0])), "-", song[1], " " * (longest_artist - len(song[1])),
               "({})".format(song[2]))
         song_index += 1
-    song_total = song_index - 1
-    if unlearnt_songs == 0:
+    if unlearned_songs == 0:
         print("No more songs to learn!")
     else:
-        print(song_total - unlearnt_songs, "songs learned,", unlearnt_songs, "songs still to learn")
+        print(song_index - unlearned_songs, "songs learned,", unlearned_songs, "songs still to learn")
 
 
 def add_new_song(song_list):
     title = record_user_input("Title: ")
     artist = record_user_input("Artist: ")
-    date = record_user_input("Date: ")
-    new_song = [title, artist, date, 'u']
+    year = record_user_input("Year: ")
+    new_song = [title, artist, year, 'u']
     song_list.append(new_song)
+    print(title, 'by', artist, '({})'.format(year), 'added to song list')
 
 
 def record_user_input(input_type):
-    if input_type == "Date: " or input_type == 'song_index':
+    if input_type == "Year: " or input_type == 'song_index':
         data_type = int
     else:
         data_type = str
@@ -104,8 +101,8 @@ def verify_user_input(user_input, data_type):
     else:
         try:
             user_input = int(user_input)
-            if user_input <= 0:
-                print("Number must be > than 0")
+            if user_input < 0:
+                print("Number must be >= than 0")
                 return False
             else:
                 return True
@@ -121,20 +118,20 @@ def check_unlearned_song(song_list):
             unlearned += 1
             check_learned_song(song_list)
             break
-        if unlearned == 0:
-            print("No songs left to learn")
+    if unlearned == 0:
+        print("No songs left to learn!")
 
 
 def check_learned_song(song_list):
     user_input = record_user_input('song_index')
-    if user_input > len(song_list):
+    if user_input > len(song_list) - 1:
         print('Invalid song number')
         check_learned_song(song_list)
-    elif song_list[user_input - 1][3] == 'l':
-        print('That song is already learned')
+    elif song_list[user_input][3] == 'l':
+        print('You have already learned', song_list[user_input][0])
     else:
-        print(song_list[user_input - 1][0], " by ", song_list[user_input - 1][1], " learned!")
-        song_list[user_input - 1][3] = 'l'
+        print(song_list[user_input][0], "by", song_list[user_input][1], " learned")
+        song_list[user_input][3] = 'l'
 
 
 def save_songs(song_list):
