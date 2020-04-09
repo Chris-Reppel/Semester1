@@ -119,7 +119,7 @@ def check_unlearned_song(song_list):
             check_learned_song(song_list)
             break
     if unlearned == 0:
-        print("No songs left to learn!")
+        print("No more songs to learn!")
 
 
 def check_learned_song(song_list):
@@ -130,7 +130,7 @@ def check_learned_song(song_list):
     elif song_list[user_input][3] == 'l':
         print('You have already learned', song_list[user_input][0])
     else:
-        print(song_list[user_input][0], "by", song_list[user_input][1], " learned")
+        print(song_list[user_input][0], "by", song_list[user_input][1], "learned")
         song_list[user_input][3] = 'l'
 
 
