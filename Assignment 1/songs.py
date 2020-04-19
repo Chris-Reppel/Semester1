@@ -39,6 +39,7 @@ def load_songs():
         song_list.append(song)
     for song in song_list:
         song[2] = int(song[2])
+    print(song_list)
     print('{} songs loaded from songs.csv'.format(len(song_list)))
     return song_list
 
